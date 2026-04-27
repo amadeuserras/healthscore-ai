@@ -1,0 +1,19 @@
+# dependencies
+node_modules
+
+# next.js
+.next
+out
+
+# builds / caches
+.turbo
+coverage
+.vercel
+
+# env / secrets
+.env
+.env.*
+
+# misc
+*.log
+
