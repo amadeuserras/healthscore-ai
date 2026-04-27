@@ -1,17 +1,12 @@
 @import 'tailwindcss';
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
-}
-
-.font-instrument {
-  font-family:
+@theme {
+  --font-instrument:
     var(--font-instrument-serif), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
-body {
-  color: #20201e;
-  background: #fafafa;
+@layer base {
+  body {
+    @apply text-stone-900 bg-stone-50;
+  }
 }

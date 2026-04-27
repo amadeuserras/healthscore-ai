@@ -13,7 +13,7 @@ function CtaLink({ href, children, variant, className }: CtaLinkProps) {
 
   const ctaVariant = {
     primary: 'bg-lime-950 text-lime-100 hover:bg-lime-950/90',
-    secondary: 'border-stone-300 bg-white text-stone-900 hover:bg-stone-100',
+    secondary: 'border-stone-300 bg-white hover:bg-stone-100',
   } as const;
 
   return (
@@ -60,7 +60,7 @@ function BiomarkerPreviewCard({
     <div className="rounded-xl border border-stone-200/70 bg-white p-7 shadow-[2px_2px_5px_rgba(0,0,0,0.02)]">
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h4 className="text-lg font-medium tracking-[-0.3px] text-stone-900">{title}</h4>
+          <h4 className="text-lg font-medium tracking-[-0.3px]">{title}</h4>
           <p className={`text-2xl font-semibold ${valueClassName}`}>{value}</p>
         </div>
         <span className="text-2xl" aria-hidden>
@@ -68,9 +68,9 @@ function BiomarkerPreviewCard({
         </span>
       </div>
       <p className="mb-3 text-sm leading-relaxed text-stone-500">
-        <span className="font-medium text-stone-900">{lead}</span> {description}
+        <span className="font-medium">{lead}</span> {description}
       </p>
-      <p className="text-sm font-medium text-stone-900">→ {recommendation}</p>
+      <p className="text-sm font-medium">→ {recommendation}</p>
       <p className="mt-6">
         <span className="inline-flex items-center rounded-full border border-stone-200 bg-stone-100 px-2.5 py-1 text-xs font-medium text-stone-800">
           {pill}
@@ -85,7 +85,7 @@ export default function HomePage() {
     <div className="h-screen flex flex-col bg-stone-50">
       <nav>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-          <h1 className="font-tight text-2xl font-semibold tracking-[-1.2px] text-stone-900">
+          <h1 className="font-tight text-2xl font-semibold tracking-[-1.2px]">
             Healthscore <span className="text-lime-800">AI</span>
           </h1>
           <div className="flex items-center gap-6">
@@ -101,7 +101,7 @@ export default function HomePage() {
 
       <main className="mx-auto max-w-container px-4 py-20 md:py-24 flex-1">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-6 tracking-[-5px] text-4xl text-stone-900 md:text-5xl lg:text-6xl">
+          <h2 className="mb-6 tracking-[-5px] text-4xl md:text-5xl lg:text-6xl">
             Understand your <AccentWord>biomarkers</AccentWord>
           </h2>
           <p className="mx-auto max-w-2xl text-lg leading-relaxed tracking-[-0.3px] text-stone-500">
@@ -119,7 +119,7 @@ export default function HomePage() {
           </div>
 
           <div className="text-left">
-            <h3 className="mb-10 text-center font-tight text-3xl tracking-[-1.8px] text-stone-900 md:text-4xl">
+            <h3 className="mb-10 text-center font-tight text-3xl tracking-[-1.8px] md:text-4xl">
               What You&apos;ll Get
             </h3>
             <div className="grid gap-6 md:grid-cols-3">
