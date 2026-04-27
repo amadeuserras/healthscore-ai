@@ -28,7 +28,7 @@ function CtaLink({ href, children, variant, className }: CtaLinkProps) {
 
 function AccentWord({ children }: { children: React.ReactNode }) {
   return (
-    <span className="font-instrument tracking-[-1.6px] italic text-lime-800 text-[68px] -ml-2">
+    <span className="font-instrument tracking-[-1.6px] italic text-lime-800 text-[68px]">
       {children}
     </span>
   );
