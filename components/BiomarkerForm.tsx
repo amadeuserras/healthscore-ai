@@ -20,9 +20,9 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
   });
 
   const handleChange = (field: keyof BiomarkerData, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value === '' ? null : parseFloat(value)
+      [field]: value === '' ? null : parseFloat(value),
     }));
   };
 
@@ -32,27 +32,65 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
   };
 
   const biomarkerFields = [
-    { key: 'fastingGlucose' as keyof BiomarkerData, label: 'Fasting Glucose', unit: 'mg/dL', info: 'Measures blood sugar levels after fasting' },
-    { key: 'hba1c' as keyof BiomarkerData, label: 'HbA1c', unit: '%', info: 'Average blood sugar over 2-3 months' },
-    { key: 'totalCholesterol' as keyof BiomarkerData, label: 'Total Cholesterol', unit: 'mg/dL', info: 'Combined cholesterol in your blood' },
-    { key: 'ldlCholesterol' as keyof BiomarkerData, label: 'LDL Cholesterol', unit: 'mg/dL', info: '"Bad" cholesterol that can build up in arteries' },
-    { key: 'hdlCholesterol' as keyof BiomarkerData, label: 'HDL Cholesterol', unit: 'mg/dL', info: '"Good" cholesterol that removes LDL' },
-    { key: 'triglycerides' as keyof BiomarkerData, label: 'Triglycerides', unit: 'mg/dL', info: 'Type of fat in your blood' },
-    { key: 'vitaminD' as keyof BiomarkerData, label: 'Vitamin D', unit: 'ng/mL', info: 'Important for bone health and immunity' },
-    { key: 'tsh' as keyof BiomarkerData, label: 'TSH', unit: 'mIU/L', info: 'Thyroid function marker' },
+    {
+      key: 'fastingGlucose' as keyof BiomarkerData,
+      label: 'Fasting Glucose',
+      unit: 'mg/dL',
+      info: 'Measures blood sugar levels after fasting',
+    },
+    {
+      key: 'hba1c' as keyof BiomarkerData,
+      label: 'HbA1c',
+      unit: '%',
+      info: 'Average blood sugar over 2-3 months',
+    },
+    {
+      key: 'totalCholesterol' as keyof BiomarkerData,
+      label: 'Total Cholesterol',
+      unit: 'mg/dL',
+      info: 'Combined cholesterol in your blood',
+    },
+    {
+      key: 'ldlCholesterol' as keyof BiomarkerData,
+      label: 'LDL Cholesterol',
+      unit: 'mg/dL',
+      info: '"Bad" cholesterol that can build up in arteries',
+    },
+    {
+      key: 'hdlCholesterol' as keyof BiomarkerData,
+      label: 'HDL Cholesterol',
+      unit: 'mg/dL',
+      info: '"Good" cholesterol that removes LDL',
+    },
+    {
+      key: 'triglycerides' as keyof BiomarkerData,
+      label: 'Triglycerides',
+      unit: 'mg/dL',
+      info: 'Type of fat in your blood',
+    },
+    {
+      key: 'vitaminD' as keyof BiomarkerData,
+      label: 'Vitamin D',
+      unit: 'ng/mL',
+      info: 'Important for bone health and immunity',
+    },
+    {
+      key: 'tsh' as keyof BiomarkerData,
+      label: 'TSH',
+      unit: 'mIU/L',
+      info: 'Thyroid function marker',
+    },
   ];
 
   return (
     <div className="max-w-3xl mx-auto">
       <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Enter Your Biomarkers</h2>
-        
+
         <div className="space-y-4">
-          {biomarkerFields.map(field => (
+          {biomarkerFields.map((field) => (
             <div key={field.key} className="flex items-center gap-4">
-              <label className="flex-1 text-gray-700 font-medium">
-                {field.label}
-              </label>
+              <label className="flex-1 text-gray-700 font-medium">{field.label}</label>
               <div className="flex items-center gap-2">
                 <input
                   type="number"

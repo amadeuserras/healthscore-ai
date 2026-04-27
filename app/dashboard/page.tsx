@@ -19,7 +19,9 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       if (!user) {
         router.push('/auth/login');
       } else {
@@ -114,7 +116,8 @@ export default function DashboardPage() {
             <div className="max-w-3xl mx-auto mb-8">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">Analyze Your Biomarkers</h1>
               <p className="text-gray-600">
-                Enter your latest lab results to get personalized health insights. Your results will be saved to your history.
+                Enter your latest lab results to get personalized health insights. Your results will
+                be saved to your history.
               </p>
             </div>
             <BiomarkerForm onSubmit={handleAnalyze} />

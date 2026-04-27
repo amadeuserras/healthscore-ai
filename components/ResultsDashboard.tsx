@@ -32,35 +32,40 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
     }
   };
 
-  const scoreColor = results.healthScore >= 80 ? 'text-green-600' : results.healthScore >= 60 ? 'text-yellow-600' : 'text-red-600';
+  const scoreColor =
+    results.healthScore >= 80
+      ? 'text-green-600'
+      : results.healthScore >= 60
+        ? 'text-yellow-600'
+        : 'text-red-600';
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Overall Health Score */}
       <div className="bg-white rounded-xl shadow-lg p-8 text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Health Score</h2>
-        
+
         <div className="flex justify-center gap-2 mb-4">
           {Array.from({ length: 10 }).map((_, i) => (
             <div
               key={i}
               className={`w-8 h-8 rounded-full ${
-                i < Math.floor(results.healthScore / 10) ? scoreColor.replace('text-', 'bg-') : 'bg-gray-200'
+                i < Math.floor(results.healthScore / 10)
+                  ? scoreColor.replace('text-', 'bg-')
+                  : 'bg-gray-200'
               }`}
             />
           ))}
         </div>
-        
-        <p className={`text-5xl font-bold ${scoreColor} mb-4`}>
-          {results.healthScore}/100
-        </p>
-        
+
+        <p className={`text-5xl font-bold ${scoreColor} mb-4`}>{results.healthScore}/100</p>
+
         <p className="text-gray-600">
-          {results.healthScore >= 80 
+          {results.healthScore >= 80
             ? 'Excellent health foundation'
             : results.healthScore >= 60
-            ? 'Good foundation, with room to optimize'
-            : 'Areas requiring attention identified'}
+              ? 'Good foundation, with room to optimize'
+              : 'Areas requiring attention identified'}
         </p>
       </div>
 

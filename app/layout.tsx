@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "HealthScore AI - Understand Your Biomarkers",
-  description: "AI-powered insights from your lab results",
+  title: 'HealthScore AI - Understand Your Biomarkers',
+  description: 'AI-powered insights from your lab results',
 };
 
 export default function RootLayout({

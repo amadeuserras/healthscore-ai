@@ -41,8 +41,8 @@ export default function DemoPage() {
             <Link href="/auth/login" className="text-gray-700 hover:text-blue-900">
               Log In
             </Link>
-            <Link 
-              href="/auth/signup" 
+            <Link
+              href="/auth/signup"
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
             >
               Sign Up
@@ -58,8 +58,8 @@ export default function DemoPage() {
             <div className="max-w-3xl mx-auto mb-8">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">Try the Demo</h1>
               <p className="text-gray-600">
-                Enter your biomarker values below to see how HealthScore AI analyzes your lab results. 
-                Don't have your results handy? We've pre-filled some example values.
+                Enter your biomarker values below to see how HealthScore AI analyzes your lab
+                results. Don't have your results handy? We've pre-filled some example values.
               </p>
             </div>
             <BiomarkerForm onSubmit={handleAnalyze} />
@@ -68,9 +68,7 @@ export default function DemoPage() {
 
         {isAnalyzing && <LoadingState />}
 
-        {!isAnalyzing && results && (
-          <ResultsDashboard results={results} onReset={handleReset} />
-        )}
+        {!isAnalyzing && results && <ResultsDashboard results={results} onReset={handleReset} />}
       </main>
     </div>
   );

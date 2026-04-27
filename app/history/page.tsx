@@ -21,7 +21,9 @@ export default function HistoryPage() {
 
   useEffect(() => {
     const checkUserAndLoadHistory = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       if (!user) {
         router.push('/auth/login');
         return;
@@ -159,11 +161,13 @@ export default function HistoryPage() {
                   <div className="mt-4 pt-4 border-t border-gray-200">
                     <h4 className="font-semibold text-gray-900 mb-2">Key Insights:</h4>
                     <ul className="space-y-1">
-                      {entry.analysis_results.keyAreas.slice(0, 2).map((area: any, index: number) => (
-                        <li key={index} className="text-sm text-gray-600">
-                          • {area.title}
-                        </li>
-                      ))}
+                      {entry.analysis_results.keyAreas
+                        .slice(0, 2)
+                        .map((area: any, index: number) => (
+                          <li key={index} className="text-sm text-gray-600">
+                            • {area.title}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 </div>
