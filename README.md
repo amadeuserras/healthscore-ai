@@ -2,6 +2,8 @@
 
 > A biomarker insights dashboard that turns lab results into actionable health guidance — built with Next.js, Supabase, and OpenAI.
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel)](https://healthscore-ai-red.vercel.app/)
+
 ![Demo Screenshot](screenshot.png) _(in progress)_
 
 ---
