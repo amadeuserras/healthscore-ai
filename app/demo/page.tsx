@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { BiomarkerData, AnalysisResult } from '@/types/biomarkers';
-import { requestAnalysis } from '@/lib/analysisRequest';
+import { requestAnalysis } from '@/lib/client/api/requestAnalysis';
 import BiomarkerForm from '@/components/BiomarkerForm';
 import LoadingState from '@/components/LoadingState';
 import ResultsDashboard from '@/components/ResultsDashboard';

@@ -1,29 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { analyzeData } from '@/lib/analysis';
-import { BiomarkerData } from '@/types/biomarkers';
-
-function isNumberOrNull(x: unknown): x is number | null {
-  return x === null || (typeof x === 'number' && !Number.isNaN(x));
-}
-
-function isValidPayload(body: unknown): body is BiomarkerData {
-  if (!body || typeof body !== 'object') return false;
-  const b = body as Record<string, unknown>;
-  const keys = [
-    'fastingGlucose',
-    'hba1c',
-    'totalCholesterol',
-    'ldlCholesterol',
-    'hdlCholesterol',
-    'triglycerides',
-    'vitaminD',
-    'tsh',
-  ] as const;
-  for (const k of keys) {
-    if (!isNumberOrNull(b[k])) return false;
-  }
-  return true;
-}
+import { analyzeData } from '@/lib/server/analysis';
+import { isValidBiomarkerData } from '@/lib/shared/validation/biomarkerPayload';
 
 export async function POST(request: NextRequest) {
   let body: unknown;
@@ -33,7 +10,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
-  if (!isValidPayload(body)) {
+  if (!isValidBiomarkerData(body)) {
     return NextResponse.json({ error: 'Invalid biomarker payload' }, { status: 400 });
   }
 
