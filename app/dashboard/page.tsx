@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import { BiomarkerData, AnalysisResult } from '@/types/biomarkers';
-import { analyzeData } from '@/lib/analysis';
+import { requestAnalysis } from '@/lib/analysisRequest';
 import BiomarkerForm from '@/components/BiomarkerForm';
 import LoadingState from '@/components/LoadingState';
 import ResultsDashboard from '@/components/ResultsDashboard';
@@ -32,10 +32,11 @@ export default function DashboardPage() {
   const handleAnalyze = async (data: BiomarkerData) => {
     setIsAnalyzing(true);
     try {
-      const analysisResult = await analyzeData(data);
+      const analysisResult = await requestAnalysis(data);
       setResults(analysisResult);
     } catch (error) {
       console.error('Analysis failed:', error);
+      alert('Analysis failed. Please try again.');
     } finally {
       setIsAnalyzing(false);
     }
