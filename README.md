@@ -55,7 +55,7 @@ This isn't just a tech demo. It's a mini version of what I'd be building at Axo.
 
 - Upload lab reports in PDF format to automatically extract and pre-fill biomarker values
 - Uses OpenAI API extract data from various lab report formats
-- Try it with the example PDF: `assets/lab_report_example`
+- 👉 Try it with the example PDF: `public/lab_report_example.pdf`
 
 ### 🔐 **Auth + Data Persistence**
 
