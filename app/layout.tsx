@@ -22,7 +22,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: 'HealthScore AI - Understand Your Biomarkers',
+  title: 'Healthscore AI - Understand Your Biomarkers',
   description: 'AI-powered insights from your lab results',
 };
 
