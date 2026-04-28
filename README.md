@@ -4,7 +4,7 @@
 
 ### 👉 [Live demo](https://healthscore-ai-red.vercel.app/)
 
-![Demo Screenshot](screenshot.png) _(in progress)_
+![Demo Screenshot](public/screenshot.png)
 
 ---
 
