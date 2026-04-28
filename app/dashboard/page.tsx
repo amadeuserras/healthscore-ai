@@ -9,6 +9,7 @@ import BiomarkerForm from '@/components/BiomarkerForm';
 import LoadingState from '@/components/LoadingState';
 import ResultsDashboard from '@/components/ResultsDashboard';
 import Link from 'next/link';
+import { Spinner } from '@/components/ui';
 
 export default function DashboardPage() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -78,7 +79,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen bg-stone-50 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-sm text-stone-500">Loading…</p>
+          <Spinner />
         </div>
       </div>
     );
@@ -144,7 +145,11 @@ export default function DashboardPage() {
                 disabled={saving}
                 className="inline-flex items-center justify-center rounded-[33px] border border-lime-950 bg-lime-950 px-8 py-3 text-sm font-semibold tracking-[-0.4px] text-lime-100 shadow-[2px_2px_5px_rgba(0,0,0,0.06)] transition-colors enabled:cursor-pointer hover:bg-lime-950/90 hover:border-lime-950/90 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
               >
-                {saving ? 'Saving...' : '💾 Save to My History'}
+                {saving ? (
+                  <Spinner label="Saving" className="border-lime-200/40 border-t-lime-100" />
+                ) : (
+                  '💾 Save to My History'
+                )}
               </button>
             </div>
           </>
