@@ -143,19 +143,40 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
           aria-label="PDF upload"
           className="mb-8 rounded-lg border border-stone-200 bg-stone-50 p-4"
         >
+          <input
+            id="pdf-upload"
+            type="file"
+            accept="application/pdf"
+            onChange={handlePdfUpload}
+            disabled={isUploading}
+            className="sr-only"
+          />
+
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div className="min-w-0">
+            <label
+              htmlFor={isUploading ? undefined : 'pdf-upload'}
+              aria-disabled={isUploading}
+              className={[
+                'min-w-0',
+                isUploading ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
+              ].join(' ')}
+            >
               <p className="text-sm font-medium tracking-[-0.2px] text-stone-900">
                 Upload a PDF lab report
               </p>
               <p className="mt-1 text-xs leading-relaxed text-stone-500">
                 Upload your lab report PDF to automatically extract biomarker values
               </p>
-            </div>
+              {uploadError && <p className="mt-2 text-xs text-red-600">{uploadError}</p>}
+            </label>
 
             <label
-              htmlFor="pdf-upload"
-              className="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-[33px] border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+              htmlFor={isUploading ? undefined : 'pdf-upload'}
+              aria-disabled={isUploading}
+              className={[
+                'inline-flex shrink-0 items-center justify-center gap-2 rounded-[33px] border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900',
+                isUploading ? 'cursor-not-allowed opacity-60' : 'cursor-pointer hover:bg-stone-100',
+              ].join(' ')}
             >
               {isUploading ? (
                 <>
@@ -183,8 +204,6 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
               )}
             </label>
           </div>
-
-          {uploadError && <p className="mt-2 text-xs text-red-600">{uploadError}</p>}
         </section>
 
         <div className="space-y-4">
