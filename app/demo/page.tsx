@@ -69,7 +69,19 @@ export default function DemoPage() {
 
         {isAnalyzing && <LoadingState />}
 
-        {!isAnalyzing && results && <ResultsDashboard results={results} onReset={handleReset} />}
+        {!isAnalyzing && results && (
+          <>
+            <ResultsDashboard results={results} />
+            <div className="mx-auto mt-6 flex max-w-6xl items-center justify-center">
+              <button
+                onClick={handleReset}
+                className="inline-flex items-center justify-center rounded-[33px] border border-stone-300 bg-white px-6 py-3 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors cursor-pointer hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+              >
+                ← Try Different Values
+              </button>
+            </div>
+          </>
+        )}
       </main>
     </div>
   );

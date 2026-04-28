@@ -57,8 +57,6 @@ export default function DashboardPage() {
       });
 
       if (error) throw error;
-
-      alert('Results saved to your history!');
     } catch (error: any) {
       console.error('Save failed:', error);
       alert('Failed to save results. Please make sure your database is set up correctly.');
@@ -133,8 +131,14 @@ export default function DashboardPage() {
 
         {!isAnalyzing && results && (
           <>
-            <ResultsDashboard results={results} onReset={handleReset} />
-            <div className="mx-auto mt-10 max-w-6xl text-center">
+            <ResultsDashboard results={results} />
+            <div className="mx-auto mt-6 flex max-w-6xl flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <button
+                onClick={handleReset}
+                className="inline-flex items-center justify-center rounded-[33px] border border-stone-300 bg-white px-6 py-3 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors cursor-pointer hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+              >
+                ← Try Different Values
+              </button>
               <button
                 onClick={handleSave}
                 disabled={saving}
