@@ -1,4 +1,5 @@
 import { AnalysisResult } from '@/types/biomarkers';
+import { BiomarkerCard } from '@/components/BiomarkerPreviewCard';
 
 interface ResultsDashboardProps {
   results: AnalysisResult;
@@ -6,32 +7,6 @@ interface ResultsDashboardProps {
 }
 
 export default function ResultsDashboard({ results, onReset }: ResultsDashboardProps) {
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'optimal':
-        return 'bg-lime-50 border-lime-200 text-lime-900';
-      case 'suboptimal':
-        return 'bg-amber-50 border-amber-200 text-amber-900';
-      case 'concerning':
-        return 'bg-rose-50 border-rose-200 text-rose-900';
-      default:
-        return 'bg-stone-50 border-stone-200 text-stone-900';
-    }
-  };
-
-  const getStatusEmoji = (status: string) => {
-    switch (status) {
-      case 'optimal':
-        return '✅';
-      case 'suboptimal':
-        return '⚠️';
-      case 'concerning':
-        return '❌';
-      default:
-        return '⚪';
-    }
-  };
-
   const scoreColor =
     results.healthScore >= 80
       ? 'text-lime-800'
@@ -49,19 +24,6 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
         <p className="mb-8 text-sm tracking-[-0.2px] text-stone-500">
           A quick snapshot based on your current biomarker inputs.
         </p>
-
-        <div className="flex justify-center gap-2 mb-4">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div
-              key={i}
-              className={`w-8 h-8 rounded-full ${
-                i < Math.floor(results.healthScore / 10)
-                  ? scoreColor.replace('text-', 'bg-')
-                  : 'bg-stone-200'
-              }`}
-            />
-          ))}
-        </div>
 
         <p className={`mb-4 text-5xl font-semibold tracking-[-2.4px] ${scoreColor}`}>
           {results.healthScore}
@@ -83,24 +45,8 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
           Biomarker status
         </h2>
         <div className="grid md:grid-cols-3 gap-4">
-          {results.biomarkers.map((biomarker, index) => (
-            <div
-              key={index}
-              className={`rounded-xl border p-6 shadow-[2px_2px_5px_rgba(0,0,0,0.02)] ${getStatusColor(
-                biomarker.status,
-              )}`}
-            >
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex-1">
-                  <h3 className="text-sm font-medium tracking-[-0.2px]">{biomarker.name}</h3>
-                  <p className="mt-1 text-2xl font-semibold tracking-[-1px]">
-                    {biomarker.value} {biomarker.unit}
-                  </p>
-                </div>
-                <span className="text-3xl">{getStatusEmoji(biomarker.status)}</span>
-              </div>
-              <p className="text-sm font-medium tracking-[-0.2px]">{biomarker.statusLabel}</p>
-            </div>
+          {results.biomarkers.map((biomarker) => (
+            <BiomarkerCard key={biomarker.name} biomarker={biomarker} />
           ))}
         </div>
       </div>

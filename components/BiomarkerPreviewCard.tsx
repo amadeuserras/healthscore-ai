@@ -1,3 +1,5 @@
+import type { BiomarkerResult, BiomarkerStatus } from '@/types/biomarkers';
+
 export type BiomarkerPreviewCardProps = {
   title: string;
   value: string;
@@ -40,6 +42,49 @@ export function BiomarkerPreviewCard({
           {pill}
         </span>
       </p>
+    </div>
+  );
+}
+
+export type BiomarkerCardProps = {
+  biomarker: BiomarkerResult;
+};
+
+const STATUS_TO_PILL_CLASSNAME: Record<BiomarkerStatus, string> = {
+  optimal: 'border-lime-200 bg-lime-50 text-lime-800',
+  suboptimal: 'border-amber-200 bg-amber-50 text-amber-800',
+  concerning: 'border-rose-200 bg-rose-50 text-rose-800',
+};
+
+const STATUS_TO_EMOJI: Record<BiomarkerStatus, string> = {
+  optimal: '✅',
+  suboptimal: '⚠️',
+  concerning: '❌',
+};
+
+export function BiomarkerCard({ biomarker }: BiomarkerCardProps) {
+  const statusEmoji = STATUS_TO_EMOJI[biomarker.status] ?? '⚪';
+  const pillClassName =
+    STATUS_TO_PILL_CLASSNAME[biomarker.status] ?? 'border-stone-200 bg-stone-100 text-stone-800';
+
+  return (
+    <div className="rounded-xl border border-stone-200/70 bg-white p-7 shadow-[2px_2px_5px_rgba(0,0,0,0.02)]">
+      <div className="mb-2 flex items-start justify-between">
+        <div>
+          <h3 className="text-sm font-medium tracking-[-0.2px] text-stone-500">{biomarker.name}</h3>
+          <p className="mt-1 text-2xl font-semibold tracking-[-1px] text-stone-900">
+            {biomarker.value} {biomarker.unit}
+          </p>
+        </div>
+        <span className="text-xl" aria-hidden>
+          {statusEmoji}
+        </span>
+      </div>
+      <span
+        className={`mt-2 inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium ${pillClassName}`}
+      >
+        {biomarker.statusLabel}
+      </span>
     </div>
   );
 }
