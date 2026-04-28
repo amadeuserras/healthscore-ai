@@ -1,0 +1,35 @@
+import Link from 'next/link';
+
+export type CtaLinkProps = {
+  href: string;
+  children: React.ReactNode;
+  variant: 'primary' | 'secondary';
+  className?: string;
+};
+
+export function CtaLink({ href, children, variant, className }: CtaLinkProps) {
+  const ctaBase =
+    'inline-flex items-center justify-center rounded-[33px] border px-6 py-3.5 text-sm font-medium -tracking-[0.4px] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900';
+
+  const ctaVariant = {
+    primary: 'bg-lime-950 text-lime-100 hover:bg-lime-950/90',
+    secondary: 'border-stone-300 bg-white hover:bg-stone-100',
+  } as const;
+
+  return (
+    <Link
+      href={href}
+      className={[ctaBase, ctaVariant[variant], className].filter(Boolean).join(' ')}
+    >
+      {children}
+    </Link>
+  );
+}
+
+export function AccentWord({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="font-instrument tracking-[-1.6px] italic text-lime-800 text-[68px]">
+      {children}
+    </span>
+  );
+}
