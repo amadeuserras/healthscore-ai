@@ -2,7 +2,7 @@
 
 > A biomarker insights dashboard that turns lab results into actionable health guidance — built with Next.js, Supabase, and OpenAI.
 
-### 👉 [Live demo](https://healthscore-ai-red.vercel.app/)
+### 👉 [Live demo](https://healthscore-ai-amadeu.vercel.app/)
 
 ![Demo Screenshot](public/screenshot.png)
 
@@ -14,7 +14,7 @@
 
 - **A single health score** (0–100) that summarizes your overall status
 - **Color-coded biomarker cards** so you can see what's optimal, what needs attention, and what's concerning at a glance
-- **AI generated insights and recommendations** – In plain English (via OpenAI, optional)
+- **AI generated insights and recommendations** – In plain English (via OpenAI)
 
 You can try it in **demo mode** (no account needed) or **sign up** to save your results and track changes over time.
 
@@ -42,7 +42,7 @@ This isn't just a tech demo. It's a mini version of what I'd be building at Axo.
 - Generates a health score with clear status indicators (✅ optimal, ⚠️ suboptimal, ❌ concerning)
 - Works with or without OpenAI — falls back to deterministic rule-based insights if the API key isn't configured
 
-### 🤖 \*_AI-Powered Insights_
+### 🤖 _AI-Powered Insights_
 
 - Uses OpenAI's structured output mode to generate personalized recommendations
 - Validates all AI responses to ensure clean, predictable JSON
@@ -71,7 +71,7 @@ This isn't just a tech demo. It's a mini version of what I'd be building at Axo.
 | **Backend**  | Next.js API Routes, server-side validation, rate limiting |
 | **Database** | Supabase (Postgres + RLS)                                 |
 | **Auth**     | Supabase Auth (email/password)                            |
-| **AI**       | OpenAI API (optional, with structured output validation)  |
+| **AI**       | OpenAI API                                                |
 
 ### Architecture Highlights
 
