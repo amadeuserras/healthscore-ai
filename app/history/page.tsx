@@ -179,7 +179,6 @@ export default function HistoryPage() {
                       Key insights
                     </h4>
                     <ul className="space-y-1">
-                      ¬
                       {entry.analysis_results.keyAreas
                         .slice(0, 2)
                         .map((area: any, index: number) => (
