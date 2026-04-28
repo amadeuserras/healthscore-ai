@@ -51,6 +51,22 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
 
       const extractedData: BiomarkerData = await response.json();
 
+      const hasAnyValue = Object.values({
+        fastingGlucose: extractedData.fastingGlucose ?? null,
+        hba1c: extractedData.hba1c ?? null,
+        totalCholesterol: extractedData.totalCholesterol ?? null,
+        ldlCholesterol: extractedData.ldlCholesterol ?? null,
+        hdlCholesterol: extractedData.hdlCholesterol ?? null,
+        triglycerides: extractedData.triglycerides ?? null,
+        vitaminD: extractedData.vitaminD ?? null,
+        tsh: extractedData.tsh ?? null,
+      }).some((value) => value !== null);
+
+      if (!hasAnyValue) {
+        setUploadError("Couldn't find matching values from that PDF. Please enter them manually.");
+        return;
+      }
+
       setFormData({
         fastingGlucose: extractedData.fastingGlucose ?? null,
         hba1c: extractedData.hba1c ?? null,
