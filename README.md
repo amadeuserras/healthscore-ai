@@ -4,7 +4,8 @@
 
 ### 👉 [Live demo](https://healthscore-ai-amadeu.vercel.app/)
 
-![Demo Screenshot](public/screenshot.png)
+![Login Screenshot](public/screenshot-1.png)
+![Results Screenshot](public/screenshot-2.png)
 
 ---
 
