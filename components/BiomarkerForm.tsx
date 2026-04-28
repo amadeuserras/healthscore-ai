@@ -139,49 +139,53 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
           Use your latest lab report. You can leave fields blank if you don’t have a value.
         </p>
 
-        <div className="mb-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
-          <label
-            htmlFor="pdf-upload"
-            className="inline-flex items-center justify-center gap-2 rounded-[33px] border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors cursor-pointer hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
-          >
-            {isUploading ? (
-              <>
-                <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-stone-300 border-t-stone-900"></span>
-                Extracting data...
-              </>
-            ) : (
-              <>
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                  />
-                </svg>
-                Upload PDF Lab Report
-              </>
-            )}
-          </label>
-          <input
-            id="pdf-upload"
-            type="file"
-            accept="application/pdf"
-            onChange={handlePdfUpload}
-            disabled={isUploading}
-            className="hidden"
-          />
-          <p className="mt-2 text-xs text-stone-500">
-            Upload your lab report PDF to automatically extract biomarker values
-          </p>
+        <section
+          aria-label="PDF upload"
+          className="mb-8 rounded-lg border border-stone-200 bg-stone-50 p-4"
+        >
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
+              <p className="text-sm font-medium tracking-[-0.2px] text-stone-900">
+                Upload a PDF lab report
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-stone-500">
+                Upload your lab report PDF to automatically extract biomarker values
+              </p>
+            </div>
+
+            <label
+              htmlFor="pdf-upload"
+              className="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-[33px] border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+            >
+              {isUploading ? (
+                <>
+                  <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-stone-300 border-t-stone-900" />
+                  Extracting…
+                </>
+              ) : (
+                <>
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                    />
+                  </svg>
+                  Upload PDF
+                </>
+              )}
+            </label>
+          </div>
+
           {uploadError && <p className="mt-2 text-xs text-red-600">{uploadError}</p>}
-        </div>
+        </section>
 
         <div className="space-y-4">
           {biomarkerFields.map((field) => (
