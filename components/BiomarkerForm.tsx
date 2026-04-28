@@ -118,7 +118,7 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
                 <button
                   type="button"
                   title={field.info}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-stone-200 bg-stone-100 text-sm text-stone-700 transition-colors hover:bg-stone-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-stone-200 bg-stone-100 text-sm text-stone-700 transition-colors cursor-pointer hover:bg-stone-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
                 >
                   <span aria-hidden>ℹ️</span>
                   <span className="sr-only">{field.info}</span>
@@ -130,7 +130,7 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
 
         <button
           type="submit"
-          className="mt-10 inline-flex w-full items-center justify-center rounded-[33px] border border-lime-950 bg-lime-950 px-8 py-4 text-base font-semibold tracking-[-0.4px] text-lime-100 shadow-[2px_2px_5px_rgba(0,0,0,0.06)] transition-colors hover:bg-lime-950/90 hover:border-lime-950/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+          className="mt-10 inline-flex w-full items-center justify-center rounded-[33px] border border-lime-950 bg-lime-950 px-8 py-4 text-base font-semibold tracking-[-0.4px] text-lime-100 shadow-[2px_2px_5px_rgba(0,0,0,0.06)] transition-colors cursor-pointer hover:bg-lime-950/90 hover:border-lime-950/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
         >
           Analyze My Results →
         </button>

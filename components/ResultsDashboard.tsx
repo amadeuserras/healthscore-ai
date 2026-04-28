@@ -112,7 +112,7 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
       <div className="flex gap-4 justify-center">
         <button
           onClick={onReset}
-          className="inline-flex items-center justify-center rounded-[33px] border border-stone-300 bg-white px-6 py-3 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+          className="inline-flex items-center justify-center rounded-[33px] border border-stone-300 bg-white px-6 py-3 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors cursor-pointer hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
         >
           ← Try Different Values
         </button>

@@ -104,7 +104,7 @@ export default function DashboardPage() {
             <span className="hidden text-sm text-stone-500 md:inline">{user.email}</span>
             <button
               onClick={handleLogout}
-              className="inline-flex items-center justify-center rounded-[33px] border border-stone-300 bg-white px-4 py-2 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+              className="inline-flex items-center justify-center rounded-[33px] border border-stone-300 bg-white px-4 py-2 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors cursor-pointer hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
             >
               Log Out
             </button>
@@ -138,7 +138,7 @@ export default function DashboardPage() {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="inline-flex items-center justify-center rounded-[33px] border border-lime-950 bg-lime-950 px-8 py-3 text-sm font-semibold tracking-[-0.4px] text-lime-100 shadow-[2px_2px_5px_rgba(0,0,0,0.06)] transition-colors hover:bg-lime-950/90 hover:border-lime-950/90 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+                className="inline-flex items-center justify-center rounded-[33px] border border-lime-950 bg-lime-950 px-8 py-3 text-sm font-semibold tracking-[-0.4px] text-lime-100 shadow-[2px_2px_5px_rgba(0,0,0,0.06)] transition-colors enabled:cursor-pointer hover:bg-lime-950/90 hover:border-lime-950/90 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
               >
                 {saving ? 'Saving...' : '💾 Save to My History'}
               </button>
