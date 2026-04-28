@@ -38,7 +38,10 @@ export default function DemoPage() {
     <div className="min-h-screen bg-surface-mute">
       <nav className="border-b border-hairline bg-white/90 backdrop-blur-sm">
         <div className="mx-auto flex max-w-container items-center justify-between px-4 py-6">
-          <Link href="/" className="font-tight text-2xl font-semibold tracking-tight text-brand-ink">
+          <Link
+            href="/"
+            className="font-tight text-2xl font-semibold tracking-tight text-brand-ink"
+          >
             HealthScore AI
           </Link>
           <div className="flex items-center gap-6">

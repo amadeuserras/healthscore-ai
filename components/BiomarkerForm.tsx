@@ -83,30 +83,44 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Enter Your Biomarkers</h2>
+    <div className="mx-auto max-w-3xl">
+      <form
+        onSubmit={handleSubmit}
+        className="rounded-xl border border-stone-200/70 bg-white p-8 shadow-[2px_2px_5px_rgba(0,0,0,0.02)]"
+      >
+        <h2 className="mb-2 font-tight text-3xl font-semibold tracking-[-1.6px]">
+          Enter your biomarkers
+        </h2>
+        <p className="mb-8 max-w-2xl text-sm leading-relaxed tracking-[-0.2px] text-stone-500">
+          Use your latest lab report. You can leave fields blank if you don’t have a value.
+        </p>
 
         <div className="space-y-4">
           {biomarkerFields.map((field) => (
-            <div key={field.key} className="flex items-center gap-4">
-              <label className="flex-1 text-gray-700 font-medium">{field.label}</label>
-              <div className="flex items-center gap-2">
+            <div key={field.key} className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <div className="flex-1">
+                <label className="block text-sm font-medium tracking-[-0.2px] text-stone-800">
+                  {field.label}
+                </label>
+                <p className="mt-0.5 text-xs leading-relaxed text-stone-500">{field.info}</p>
+              </div>
+              <div className="flex items-center gap-3">
                 <input
                   type="number"
                   step="0.1"
                   value={formData[field.key] ?? ''}
                   onChange={(e) => handleChange(field.key, e.target.value)}
-                  className="w-32 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full min-w-40 rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm tracking-[-0.2px] text-stone-900 shadow-sm placeholder:text-stone-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900 sm:w-40"
                   placeholder="--"
                 />
-                <span className="text-gray-600 w-16">{field.unit}</span>
+                <span className="w-16 text-sm text-stone-500">{field.unit}</span>
                 <button
                   type="button"
                   title={field.info}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-stone-200 bg-stone-100 text-sm text-stone-700 transition-colors hover:bg-stone-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
                 >
-                  ℹ️
+                  <span aria-hidden>ℹ️</span>
+                  <span className="sr-only">{field.info}</span>
                 </button>
               </div>
             </div>
@@ -115,7 +129,7 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
 
         <button
           type="submit"
-          className="w-full mt-8 px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 transition shadow-lg"
+          className="mt-10 inline-flex w-full items-center justify-center rounded-[33px] border border-lime-950 bg-lime-950 px-8 py-4 text-base font-semibold tracking-[-0.4px] text-lime-100 shadow-[2px_2px_5px_rgba(0,0,0,0.06)] transition-colors hover:bg-lime-950/90 hover:border-lime-950/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
         >
           Analyze My Results →
         </button>

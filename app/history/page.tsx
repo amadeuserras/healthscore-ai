@@ -75,9 +75,9 @@ export default function HistoryPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-sm text-stone-500">Loading…</p>
         </div>
       </div>
     );
@@ -88,21 +88,24 @@ export default function HistoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-stone-50">
       {/* Navigation */}
-      <nav className="container mx-auto px-4 py-6">
-        <div className="flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-blue-900">
-            HealthScore AI
+      <nav>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+          <Link href="/" className="font-tight text-2xl font-semibold tracking-[-1.2px]">
+            Healthscore <span className="text-lime-800">AI</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="text-gray-700 hover:text-blue-900">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/dashboard"
+              className="rounded-full px-3 py-2 text-sm font-medium tracking-[-0.2px] text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-900"
+            >
               New Analysis
             </Link>
-            <span className="text-gray-600">{user.email}</span>
+            <span className="hidden text-sm text-stone-500 md:inline">{user.email}</span>
             <button
               onClick={handleLogout}
-              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
+              className="inline-flex items-center justify-center rounded-[33px] border border-stone-300 bg-white px-4 py-2 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
             >
               Log Out
             </button>
@@ -111,16 +114,20 @@ export default function HistoryPage() {
       </nav>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="mx-auto max-w-container px-4 py-10 md:py-14">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">Your Biomarker History</h1>
+          <h1 className="mb-8 font-tight text-4xl font-semibold tracking-[-2.4px] md:text-5xl">
+            Your biomarker history
+          </h1>
 
           {history.length === 0 ? (
-            <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-              <p className="text-gray-600 mb-6">You haven't analyzed any biomarkers yet.</p>
+            <div className="rounded-xl border border-stone-200/70 bg-white p-12 text-center shadow-[2px_2px_5px_rgba(0,0,0,0.02)]">
+              <p className="mb-8 text-sm text-stone-500">
+                You haven't analyzed any biomarkers yet.
+              </p>
               <Link
                 href="/dashboard"
-                className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
+                className="inline-flex items-center justify-center rounded-[33px] border border-lime-950 bg-lime-950 px-6 py-3 text-sm font-semibold tracking-[-0.4px] text-lime-100 shadow-[2px_2px_5px_rgba(0,0,0,0.06)] transition-colors hover:bg-lime-950/90 hover:border-lime-950/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
               >
                 Analyze Your First Results
               </Link>
@@ -128,43 +135,55 @@ export default function HistoryPage() {
           ) : (
             <div className="space-y-6">
               {history.map((entry) => (
-                <div key={entry.id} className="bg-white rounded-xl shadow-lg p-6">
+                <div
+                  key={entry.id}
+                  className="rounded-xl border border-stone-200/70 bg-white p-6 shadow-[2px_2px_5px_rgba(0,0,0,0.02)]"
+                >
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">
+                      <h3 className="font-tight text-2xl font-semibold tracking-[-1.2px]">
                         {formatDate(entry.created_at)}
                       </h3>
-                      <p className="text-2xl font-bold text-blue-600 mt-1">
-                        Score: {entry.health_score}/100
+                      <p className="mt-1 text-sm text-stone-500">
+                        Score:{' '}
+                        <span className="font-semibold tracking-[-0.2px] text-lime-800">
+                          {entry.health_score}/100
+                        </span>
                       </p>
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     {entry.biomarker_data.slice(0, 3).map((biomarker: any, index: number) => (
-                      <div key={index} className="flex items-center justify-between text-gray-700">
+                      <div
+                        key={index}
+                        className="flex items-center justify-between gap-4 text-sm text-stone-700"
+                      >
                         <span>
                           {getStatusEmoji(biomarker.value, biomarker.name)} {biomarker.name}:
                         </span>
-                        <span className="font-semibold">
+                        <span className="shrink-0 font-medium text-stone-900">
                           {biomarker.value} {biomarker.unit} ({biomarker.statusLabel})
                         </span>
                       </div>
                     ))}
                     {entry.biomarker_data.length > 3 && (
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs text-stone-500">
                         + {entry.biomarker_data.length - 3} more biomarkers
                       </p>
                     )}
                   </div>
 
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <h4 className="font-semibold text-gray-900 mb-2">Key Insights:</h4>
+                  <div className="mt-6 border-t border-stone-200 pt-4">
+                    <h4 className="mb-2 text-sm font-semibold tracking-[-0.2px] text-stone-900">
+                      Key insights
+                    </h4>
                     <ul className="space-y-1">
+                      ¬
                       {entry.analysis_results.keyAreas
                         .slice(0, 2)
                         .map((area: any, index: number) => (
-                          <li key={index} className="text-sm text-gray-600">
+                          <li key={index} className="text-sm text-stone-600">
                             • {area.title}
                           </li>
                         ))}

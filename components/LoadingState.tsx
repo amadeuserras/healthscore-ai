@@ -1,10 +1,15 @@
 export default function LoadingState() {
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">Analyzing your data...</h2>
+      <div className="rounded-xl border border-stone-200/70 bg-white p-12 text-center shadow-[2px_2px_5px_rgba(0,0,0,0.02)]">
+        <h2 className="mb-2 font-tight text-3xl font-semibold tracking-[-1.6px]">
+          Analyzing your data…
+        </h2>
+        <p className="mb-10 text-sm tracking-[-0.2px] text-stone-500">
+          This usually takes a few seconds.
+        </p>
 
-        <div className="flex justify-center gap-2 mb-8">
+        <div className="mb-10 flex justify-center gap-2">
           <span className="text-6xl animate-pulse">⚡</span>
           <span className="text-6xl animate-pulse" style={{ animationDelay: '0.2s' }}>
             ⚡
@@ -14,21 +19,21 @@ export default function LoadingState() {
           </span>
         </div>
 
-        <div className="space-y-3 text-gray-600">
+        <div className="space-y-3 text-sm text-stone-600">
           <p className="flex items-center justify-center gap-2">
-            <span className="inline-block w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
+            <span className="inline-block h-2 w-2 rounded-full bg-lime-800 animate-pulse"></span>
             Reviewing biomarker levels
           </p>
           <p className="flex items-center justify-center gap-2">
             <span
-              className="inline-block w-2 h-2 bg-blue-600 rounded-full animate-pulse"
+              className="inline-block h-2 w-2 rounded-full bg-lime-800 animate-pulse"
               style={{ animationDelay: '0.3s' }}
             ></span>
             Comparing to optimal ranges
           </p>
           <p className="flex items-center justify-center gap-2">
             <span
-              className="inline-block w-2 h-2 bg-blue-600 rounded-full animate-pulse"
+              className="inline-block h-2 w-2 rounded-full bg-lime-800 animate-pulse"
               style={{ animationDelay: '0.6s' }}
             ></span>
             Generating personalized insights

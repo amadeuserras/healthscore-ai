@@ -78,30 +78,33 @@ export default function DashboardPage() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-sm text-stone-500">Loading…</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-stone-50">
       {/* Navigation */}
-      <nav className="container mx-auto px-4 py-6">
-        <div className="flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-blue-900">
-            HealthScore AI
+      <nav>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+          <Link href="/" className="font-tight text-2xl font-semibold tracking-[-1.2px]">
+            Healthscore <span className="text-lime-800">AI</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/history" className="text-gray-700 hover:text-blue-900">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/history"
+              className="rounded-full px-3 py-2 text-sm font-medium tracking-[-0.2px] text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-900"
+            >
               My History
             </Link>
-            <span className="text-gray-600">{user.email}</span>
+            <span className="hidden text-sm text-stone-500 md:inline">{user.email}</span>
             <button
               onClick={handleLogout}
-              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
+              className="inline-flex items-center justify-center rounded-[33px] border border-stone-300 bg-white px-4 py-2 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
             >
               Log Out
             </button>
@@ -110,12 +113,14 @@ export default function DashboardPage() {
       </nav>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="mx-auto max-w-container px-4 py-10 md:py-14">
         {!isAnalyzing && !results && (
           <>
             <div className="max-w-3xl mx-auto mb-8">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Analyze Your Biomarkers</h1>
-              <p className="text-gray-600">
+              <h1 className="mb-4 font-tight text-4xl font-semibold tracking-[-2.4px] md:text-5xl">
+                Analyze your biomarkers
+              </h1>
+              <p className="max-w-2xl text-sm leading-relaxed tracking-[-0.2px] text-stone-500">
                 Enter your latest lab results to get personalized health insights. Your results will
                 be saved to your history.
               </p>
@@ -129,11 +134,11 @@ export default function DashboardPage() {
         {!isAnalyzing && results && (
           <>
             <ResultsDashboard results={results} onReset={handleReset} />
-            <div className="max-w-6xl mx-auto mt-8 text-center">
+            <div className="mx-auto mt-10 max-w-6xl text-center">
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="px-8 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center rounded-[33px] border border-lime-950 bg-lime-950 px-8 py-3 text-sm font-semibold tracking-[-0.4px] text-lime-100 shadow-[2px_2px_5px_rgba(0,0,0,0.06)] transition-colors hover:bg-lime-950/90 hover:border-lime-950/90 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
               >
                 {saving ? 'Saving...' : '💾 Save to My History'}
               </button>

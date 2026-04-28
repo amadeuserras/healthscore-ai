@@ -9,13 +9,13 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'optimal':
-        return 'bg-green-50 border-green-200 text-green-800';
+        return 'bg-lime-50 border-lime-200 text-lime-900';
       case 'suboptimal':
-        return 'bg-yellow-50 border-yellow-200 text-yellow-800';
+        return 'bg-amber-50 border-amber-200 text-amber-900';
       case 'concerning':
-        return 'bg-red-50 border-red-200 text-red-800';
+        return 'bg-rose-50 border-rose-200 text-rose-900';
       default:
-        return 'bg-gray-50 border-gray-200 text-gray-800';
+        return 'bg-stone-50 border-stone-200 text-stone-900';
     }
   };
 
@@ -34,16 +34,21 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
 
   const scoreColor =
     results.healthScore >= 80
-      ? 'text-green-600'
+      ? 'text-lime-800'
       : results.healthScore >= 60
-        ? 'text-yellow-600'
-        : 'text-red-600';
+        ? 'text-amber-700'
+        : 'text-rose-700';
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Overall Health Score */}
-      <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Health Score</h2>
+      <div className="rounded-xl border border-stone-200/70 bg-white p-8 text-center shadow-[2px_2px_5px_rgba(0,0,0,0.02)]">
+        <h2 className="mb-1 font-tight text-3xl font-semibold tracking-[-1.6px]">
+          Your health score
+        </h2>
+        <p className="mb-8 text-sm tracking-[-0.2px] text-stone-500">
+          A quick snapshot based on your current biomarker inputs.
+        </p>
 
         <div className="flex justify-center gap-2 mb-4">
           {Array.from({ length: 10 }).map((_, i) => (
@@ -52,15 +57,18 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
               className={`w-8 h-8 rounded-full ${
                 i < Math.floor(results.healthScore / 10)
                   ? scoreColor.replace('text-', 'bg-')
-                  : 'bg-gray-200'
+                  : 'bg-stone-200'
               }`}
             />
           ))}
         </div>
 
-        <p className={`text-5xl font-bold ${scoreColor} mb-4`}>{results.healthScore}/100</p>
+        <p className={`mb-4 text-5xl font-semibold tracking-[-2.4px] ${scoreColor}`}>
+          {results.healthScore}
+          <span className="text-stone-400">/100</span>
+        </p>
 
-        <p className="text-gray-600">
+        <p className="text-stone-500">
           {results.healthScore >= 80
             ? 'Excellent health foundation'
             : results.healthScore >= 60
@@ -71,44 +79,50 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
 
       {/* Biomarker Status Grid */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Biomarker Status</h2>
+        <h2 className="mb-6 font-tight text-3xl font-semibold tracking-[-1.6px]">
+          Biomarker status
+        </h2>
         <div className="grid md:grid-cols-3 gap-4">
           {results.biomarkers.map((biomarker, index) => (
             <div
               key={index}
-              className={`rounded-xl p-6 border-2 ${getStatusColor(biomarker.status)}`}
+              className={`rounded-xl border p-6 shadow-[2px_2px_5px_rgba(0,0,0,0.02)] ${getStatusColor(
+                biomarker.status,
+              )}`}
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
-                  <h3 className="font-semibold text-lg">{biomarker.name}</h3>
-                  <p className="text-2xl font-bold">
+                  <h3 className="text-sm font-medium tracking-[-0.2px]">{biomarker.name}</h3>
+                  <p className="mt-1 text-2xl font-semibold tracking-[-1px]">
                     {biomarker.value} {biomarker.unit}
                   </p>
                 </div>
                 <span className="text-3xl">{getStatusEmoji(biomarker.status)}</span>
               </div>
-              <p className="font-medium">{biomarker.statusLabel}</p>
+              <p className="text-sm font-medium tracking-[-0.2px]">{biomarker.statusLabel}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* AI-Generated Insights */}
-      <div className="bg-white rounded-xl shadow-lg p-8">
+      <div className="rounded-xl border border-stone-200/70 bg-white p-8 shadow-[2px_2px_5px_rgba(0,0,0,0.02)]">
         {/* Key Areas for Improvement */}
         {results.insights.keyAreas.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <h2 className="mb-6 flex items-center gap-2 font-tight text-3xl font-semibold tracking-[-1.6px]">
               🎯 Key Areas for Improvement
             </h2>
             <div className="space-y-6">
               {results.insights.keyAreas.map((area, index) => (
-                <div key={index} className="border-l-4 border-blue-600 pl-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <div key={index} className="border-l-2 border-stone-200 pl-6">
+                  <h3 className="mb-2 text-lg font-semibold tracking-[-0.6px] text-stone-900">
                     {index + 1}. {area.title}
                   </h3>
-                  <p className="text-gray-700 mb-3">{area.description}</p>
-                  <p className="text-blue-600 font-medium">→ {area.recommendation}</p>
+                  <p className="mb-3 text-sm leading-relaxed text-stone-600">{area.description}</p>
+                  <p className="text-sm font-medium text-stone-900">
+                    → <span className="text-lime-800">{area.recommendation}</span>
+                  </p>
                 </div>
               ))}
             </div>
@@ -117,14 +131,14 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
 
         {/* What's Going Well */}
         {results.insights.goingWell.length > 0 && (
-          <div className="mb-8 pt-8 border-t border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-8 border-t border-stone-200 pt-8">
+            <h2 className="mb-4 flex items-center gap-2 font-tight text-3xl font-semibold tracking-[-1.6px]">
               ✨ What's Going Well
             </h2>
             <ul className="space-y-2">
               {results.insights.goingWell.map((item, index) => (
-                <li key={index} className="flex items-start gap-2 text-gray-700">
-                  <span className="text-green-600">•</span>
+                <li key={index} className="flex items-start gap-2 text-sm text-stone-600">
+                  <span className="text-lime-800">•</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -133,14 +147,14 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
         )}
 
         {/* Recommended Next Steps */}
-        <div className="pt-8 border-t border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="border-t border-stone-200 pt-8">
+          <h2 className="mb-4 flex items-center gap-2 font-tight text-3xl font-semibold tracking-[-1.6px]">
             📋 Recommended Next Steps
           </h2>
           <ol className="space-y-2">
             {results.insights.nextSteps.map((step, index) => (
-              <li key={index} className="flex items-start gap-3 text-gray-700">
-                <span className="font-bold text-blue-600">{index + 1}.</span>
+              <li key={index} className="flex items-start gap-3 text-sm text-stone-600">
+                <span className="font-semibold text-lime-800">{index + 1}.</span>
                 <span>{step}</span>
               </li>
             ))}
@@ -152,7 +166,7 @@ export default function ResultsDashboard({ results, onReset }: ResultsDashboardP
       <div className="flex gap-4 justify-center">
         <button
           onClick={onReset}
-          className="px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition"
+          className="inline-flex items-center justify-center rounded-[33px] border border-stone-300 bg-white px-6 py-3 text-sm font-medium tracking-[-0.4px] text-stone-900 transition-colors hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
         >
           ← Try Different Values
         </button>
