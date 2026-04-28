@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { cx } from '@/lib/client/cx';
 
 export type CtaLinkProps = {
   href: string;
@@ -18,12 +19,25 @@ export function CtaLink({ href, children, variant, className }: CtaLinkProps) {
   } as const;
 
   return (
-    <Link
-      href={href}
-      className={[ctaBase, ctaVariant[variant], className].filter(Boolean).join(' ')}
-    >
+    <Link href={href} className={cx(ctaBase, ctaVariant[variant], className)}>
       {children}
     </Link>
+  );
+}
+
+export type TextInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  className?: string;
+};
+
+export function TextInput({ className, ...props }: TextInputProps) {
+  return (
+    <input
+      {...props}
+      className={cx(
+        'w-full rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm tracking-[-0.2px] text-stone-900 shadow-sm placeholder:text-stone-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900',
+        className,
+      )}
+    />
   );
 }
 

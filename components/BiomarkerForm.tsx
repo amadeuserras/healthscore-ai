@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { BiomarkerData } from '@/types/biomarkers';
+import { TextInput } from '@/components/ui';
 
 interface BiomarkerFormProps {
   onSubmit: (data: BiomarkerData) => void;
@@ -105,12 +106,12 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
                 <p className="mt-0.5 text-xs leading-relaxed text-stone-500">{field.info}</p>
               </div>
               <div className="flex items-center gap-3">
-                <input
+                <TextInput
                   type="number"
                   step="0.1"
                   value={formData[field.key] ?? ''}
                   onChange={(e) => handleChange(field.key, e.target.value)}
-                  className="w-full min-w-40 rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm tracking-[-0.2px] text-stone-900 shadow-sm placeholder:text-stone-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900 sm:w-40"
+                  className="min-w-40 sm:w-40"
                   placeholder="--"
                 />
                 <span className="w-16 text-sm text-stone-500">{field.unit}</span>

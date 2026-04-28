@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { TextInput } from '@/components/ui';
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('');
@@ -67,13 +68,12 @@ export default function SignUpPage() {
               >
                 Email Address
               </label>
-              <input
+              <TextInput
                 id="email"
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm tracking-[-0.2px] text-stone-900 shadow-sm placeholder:text-stone-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
                 placeholder="you@example.com"
               />
             </div>
@@ -85,13 +85,12 @@ export default function SignUpPage() {
               >
                 Password
               </label>
-              <input
+              <TextInput
                 id="password"
                 type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm tracking-[-0.2px] text-stone-900 shadow-sm placeholder:text-stone-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
                 placeholder="••••••••"
                 minLength={6}
               />
