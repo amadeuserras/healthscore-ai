@@ -1,6 +1,30 @@
 import Link from 'next/link';
 import { cx } from '@/lib/client/cx';
 
+export type SpinnerProps = {
+  className?: string;
+  size?: number;
+  label?: string;
+};
+
+export function Spinner({ className, size = 16, label = 'Loading' }: SpinnerProps) {
+  const px = `${size}px`;
+
+  return (
+    <span className="inline-flex items-center justify-center">
+      <span
+        aria-hidden={label ? undefined : true}
+        className={cx(
+          'inline-block animate-spin rounded-full border-2 border-stone-300 border-t-stone-900',
+          className,
+        )}
+        style={{ width: px, height: px }}
+      />
+      {label ? <span className="sr-only">{label}</span> : null}
+    </span>
+  );
+}
+
 export type CtaLinkProps = {
   href: string;
   children: React.ReactNode;

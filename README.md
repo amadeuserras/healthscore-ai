@@ -51,6 +51,12 @@ This isn't just a tech demo. It's a mini version of what I'd be building at Axo.
 - Validates all AI responses to ensure clean, predictable JSON
 - Graceful fallback if the API fails
 
+### 📄 **PDF Lab Report Upload**
+
+- Upload lab reports in PDF format to automatically pre-fill biomarker values
+- Uses OpenAI API to extract the relevant data
+- 👉 Try uploading the example PDF: `public/lab_report_example.pdf`
+
 ### 🔐 **Auth + Data Persistence**
 
 - Supabase authentication (email/password)
@@ -149,11 +155,10 @@ Open [http://localhost:3000](http://localhost:3000) and try the demo.
 
 ## Next Steps
 
-1. **PDF upload** — let users upload lab reports and extract biomarkers via OpenAI Vision API
-2. **Google login (OAuth)** — let users sign in with Google via Supabase Auth (Google provider)
-3. **Trend visualization** — line charts showing how biomarkers change over time
-4. **Email notifications** — remind users to retest after 3 months
-5. **More biomarkers** — expand beyond the core 8 (hormones, inflammatory markers, etc.)
+1. **Google login (OAuth)** — let users sign in with Google via Supabase Auth (Google provider)
+2. **Trend visualization** — line charts showing how biomarkers change over time
+3. **Email notifications** — remind users to retest after 3 months
+4. **More biomarkers** — expand beyond the core 8 (hormones, inflammatory markers, etc.)
 
 ---
 
