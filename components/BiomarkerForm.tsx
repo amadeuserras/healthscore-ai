@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { parsePdfFile } from '@/lib/client/pdf/parsePdfFile';
 import { BiomarkerData } from '@/types/biomarkers';
 import { TextInput } from '@/components/ui';
 
@@ -33,23 +34,33 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    if (file.type !== 'application/pdf') {
+      setUploadError('Please choose a PDF file.');
+      e.target.value = '';
+      return;
+    }
+
     setIsUploading(true);
     setUploadError(null);
 
     try {
-      const formData = new FormData();
-      formData.append('pdf', file);
-
-      const response = await fetch('/api/extract-pdf', {
+      const { text: pdfText } = await parsePdfFile(file);
+      const res = await fetch('/api/extract-biomarkers', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: pdfText }),
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to extract data from PDF');
+      if (!res.ok) {
+        let message = 'Failed to extract data from lab report';
+        try {
+          const err = (await res.json()) as { error?: string };
+          if (typeof err.error === 'string') message = err.error;
+        } catch {
+          // ignore
+        }
+        throw new Error(message);
       }
-
-      const extractedData: BiomarkerData = await response.json();
+      const extractedData: BiomarkerData = await res.json();
 
       const hasAnyValue = Object.values({
         fastingGlucose: extractedData.fastingGlucose ?? null,
@@ -79,7 +90,11 @@ export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
       });
     } catch (error) {
       console.error('PDF upload error:', error);
-      setUploadError('Failed to extract data from PDF. Please enter values manually.');
+      setUploadError(
+        error instanceof Error
+          ? error.message
+          : 'Failed to extract data from PDF. Please enter values manually.',
+      );
     } finally {
       setIsUploading(false);
       e.target.value = '';
