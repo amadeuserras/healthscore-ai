@@ -11,14 +11,14 @@ interface BiomarkerFormProps {
 
 export default function BiomarkerForm({ onSubmit }: BiomarkerFormProps) {
   const [formData, setFormData] = useState<BiomarkerData>({
-    fastingGlucose: null,
-    hba1c: null,
-    totalCholesterol: null,
-    ldlCholesterol: null,
-    hdlCholesterol: null,
-    triglycerides: null,
-    vitaminD: null,
-    tsh: null,
+    fastingGlucose: 120,
+    hba1c: 5.8,
+    totalCholesterol: 210,
+    ldlCholesterol: 140,
+    hdlCholesterol: 45,
+    triglycerides: 180,
+    vitaminD: 22,
+    tsh: 2.5,
   });
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
